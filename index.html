@@ -12,8 +12,14 @@
 
     <script src="script.example.js"></script>
     <script type="text/javascript">
-      console.log(f());
-      document.write(f());
+    // В renderer процессе (web страница).
+        const { ipcRenderer } = require('electron')
+        console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+
+        ipcRenderer.on('asynchronous-reply', (event, arg) => {
+            console.log(arg) // prints "pong"
+        })
+        ipcRenderer.send('asynchronous-message', 'ping')
     </script>
 
   </body>

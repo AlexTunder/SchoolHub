@@ -1,3 +1,5 @@
+var someVar = 0;
+
 function f(){
-    return "HELLO!";
+    return someVar;
 }
